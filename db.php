@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "quickhire";
+$database = "quickhire_db";
 
 // Create Connection 
 
