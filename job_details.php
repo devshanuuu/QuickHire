@@ -39,6 +39,9 @@ endif;
     <span class="label">Salary:</span> <?= htmlspecialchars($job['salary']) ?>
   </div>
   <div class="job-details">
+    <span class="label">Job Type:</span> <?= htmlspecialchars($job['job_type']) ?>
+  </div>
+  <div class="job-details">
     <span class="label">Description:</span><br>
     <?= nl2br(htmlspecialchars($job['job_description'])) ?>
   </div>
