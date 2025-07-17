@@ -4,11 +4,11 @@ $username = "root";
 $password = "";
 $database = "quickhire";
 
-// Create connection 
+// Create Connection 
 
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
+// Check Connection
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
