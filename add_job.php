@@ -1,3 +1,14 @@
+
+
+
+<?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+
+    <p style="color: green; font-weight: bold;">Job added successfully!</p>
+    
+<?php endif; ?>
+
+
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
