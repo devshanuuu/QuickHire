@@ -1,7 +1,7 @@
 <?php
 
 // Connect to the database using the db.php
- include 'db.php';
+ require_once 'db.php';
 
 // Check if form was submitted using POST
 

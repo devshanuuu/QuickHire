@@ -14,13 +14,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Job</title>
-    <style>
-        body {font-family: Arial; padding: 20px;}
-        input, textarea {display: block; width: 100%; margin: 10px 0; padding: 8px;}
-        button {padding: 10px 20px; background: green; color: white; border: none;}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="add-job-page">
 
     <h2>Add a New Job</h2>
 

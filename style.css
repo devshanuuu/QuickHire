@@ -1,0 +1,110 @@
+/* General Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Headings */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Success Message */
+p[style*="color: green"] {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Job List Page Styling */
+.job-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+}
+
+.job-card h3 a {
+    text-decoration: none;
+    color: #2980b9;
+}
+
+.job-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.job-details {
+    margin: 8px 0;
+    color: #555;
+}
+
+.label {
+    font-weight: bold;
+    color: #666;
+}
+
+.no-jobs {
+    text-align: center;
+    font-size: 1.1em;
+    color: #888;
+    margin-top: 50px;
+}
+
+/* Add Job Page Styling */
+.add-job-page form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.add-job-page form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.add-job-page form input,
+.add-job-page form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fdfdfd;
+}
+
+.add-job-page form textarea {
+    resize: vertical;
+}
+
+.add-job-page button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-job-page button:hover {
+    background-color: #1e8449;
+}
