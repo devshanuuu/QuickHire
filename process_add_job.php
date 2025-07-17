@@ -12,6 +12,8 @@
     $location = $_POST['location'];
     $salary = $_POST['salary'];
     $company = $_POST['company'];
+    $job_type = $_POST['job_type'];
+
 
  
 
@@ -20,12 +22,14 @@
 if(!empty($title) && !empty($description) && !empty($location)) {
 
     // SQL query to insert data
-    $stmt = $conn->prepare("INSERT INTO jobs (job_title, job_description, location, salary, company) VALUES (?, ?, ?, ?, ?)");
-
+    $stmt = $conn->prepare("INSERT INTO jobs (job_title, job_description, location, salary, company, job_type) VALUES (?, ?, ?, ?, ?, ?)");
+    if (!$stmt) {
+    die("Prepare failed: " . $conn->error);  // 👈 shows the actual error
+}
   
     // Bind the actual form values to the SQL placeholders
     // "sssss" means all 5 values are strings
-    $stmt->bind_param("sssss", $title, $description, $location, $salary, $company);
+    $stmt->bind_param("ssssss", $title, $description, $location, $salary, $company, $job_type);
 
     // Try executing the query
     if($stmt->execute()) {
