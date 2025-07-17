@@ -1,43 +1,32 @@
-<?php
-// index.php
-require_once 'db.php'; 
-
-// Fetch latest jobs (limit to 5 for homepage)
-$sql = "SELECT * FROM jobs ORDER BY created_at DESC LIMIT 5";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$result = $stmt->get_result();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Job Portal | Homepage</title>
-  <link rel="stylesheet" href="homestyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickHire | Home</title>
+    <link rel="stylesheet" href="homestyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="hero">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Welcome to QuickHire</h1>
+            <p class="tagline">Connecting great talent with great opportunities — faster than ever before.</p>
+            
+            <p class="description">
+                QuickHire is a modern job portal built for today’s fast-paced hiring world.
+                Whether you're a company looking for the right candidate or a job seeker ready to take the next big step,
+                we make the process smooth, efficient, and rewarding.
+            </p>
 
-  <div class="container">
-    <h1>Latest Job Listings</h1>
+            <p class="quote">“Success is where preparation and opportunity meet.”</p>
 
-    <?php if ($result->num_rows > 0): ?>
-      <?php while ($job = $result->fetch_assoc()): ?>
-        <div class="job-card">
-          <h2><?php echo htmlspecialchars($job['job_title']); ?></h2>
-          <p><strong>Company:</strong> <?php echo htmlspecialchars($job['company']); ?></p>
-          <p><strong>Location:</strong> <?php echo htmlspecialchars($job['location']); ?></p>
-          <p><strong>Type:</strong> <?php echo htmlspecialchars($job['job_type']); ?></p>
-          <a href="jobs/job_details.php?id=<?php echo $job['id']; ?>">View Details</a>
+            <div class="buttons">
+                <a href="login.php" class="btn">Login</a>
+                <a href="signup.php" class="btn btn-light">Sign Up</a>
+            </div>
         </div>
-      <?php endwhile; ?>
-    <?php else: ?>
-      <p>No jobs posted yet.</p>
-    <?php endif; ?>
-
-    <a href="jobs/job_lists.php" class="view-all-jobs-btn">View All Jobs</a>
-  </div>
-
+    </div>
 </body>
 </html>
