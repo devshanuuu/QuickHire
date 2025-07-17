@@ -13,7 +13,7 @@
 
     <h2>Add a New Job</h2>
 
-    <form method = "POST" action = "add_job.php">
+    <form method = "POST" action = "process_add_job.php">
         <label>Job Title</label>
         <input type = "text" name = "job_title" required>
 
