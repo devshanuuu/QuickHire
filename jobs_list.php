@@ -20,7 +20,7 @@
     <?php while($row = $result->fetch_assoc()): ?> <!-- Loops through each row of the result and stores it in $row -->
     <div class = "job-card">
         <h3>
-          <a href="job-details.php?id=<?= $row['id'] ?>">
+          <a href="job_details.php?id=<?= $row['id'] ?>">
             <?= htmlspecialchars($row['job_title']) ?>
           </a>
         </h3>
@@ -33,10 +33,7 @@
         <div class = "job-details">
             <span class ="label">Salary:</span> <?= htmlspecialchars($row['salary']) ?>
         </div>
-        <div class = "job-details">
-            <span class ="label">Description:</span><br>
-            <?= nl2br(htmlspecialchars($row['job_description'])) ?>
-        </div>
+        
     </div>
 <?php endwhile; ?>
 <?php else: ?>
