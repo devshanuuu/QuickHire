@@ -36,6 +36,14 @@
         <label>Company</label>
         <input type = "text" name = "company">
 
+        <label for="job_type">Job Type</label>
+        <select name="job_type" id="job_type" class="job-select" required>
+        <option value="">-- Select --</option>
+        <option value="On-site">On-site</option>
+        <option value="Remote">Remote</option>
+        <option value="Hybrid">Hybrid</option>
+        </select>
+
         <button type = "submit" name = "submit">Add Job</button>
     </form>
     
