@@ -1,11 +1,20 @@
-<?php 
+<?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
+
+
+
 require_once 'db.php';
+
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
+
 
     // Prepare a SQL statement to look up this email in the users table
     $stmt = $conn->prepare("SELECT id, name, password, user_type FROM users WHERE email = ?");
@@ -13,19 +22,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->store_result();
 
+
     // Check if we found a user with this email
     if($stmt->num_rows == 1) {
         $stmt->bind_result($id, $name, $hashed_password, $user_type);
         $stmt->fetch();
+
 
         // Check if the password matches in database
         if (password_verify($password, $hashed_password)) {
             $_SESSION['user_id'] = $id;
             $_SESSION['name'] = $name;
             $_SESSION['user_type'] = $user_type;
+            $_SESSION['email'] = $email;
+
 
             if ($user_type == 'professional') {
-                header("Location: jobs_list.php");
+                header("Location: professional_dashboard.php");
             } else {
                 header("Location: add_job.php");
             }
@@ -39,8 +52,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Email not registered with us. Please signup first";
     }
 
+
     }
 ?>
+
 
 
 <!DOCTYPE html>
