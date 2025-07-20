@@ -55,7 +55,7 @@
 
   <!-- Load Google Places API -->
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Hv3qXV2pNMfLNCHqPsqYJeiYpR0wz8w&libraries=places"
+    src="https://&libraries=places"
     async defer> //Males sure the script loads after the page is ready.
   </script>
 
