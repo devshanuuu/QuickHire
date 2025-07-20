@@ -1,0 +1,88 @@
+<?php 
+session_start();
+
+
+require_once 'db.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+
+$user_name = $_SESSION['name'];     
+
+$user_email = $_SESSION['email'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Dashboard - QuickHire</title>
+    <link rel="stylesheet" href="professional_dash.css">
+</head>
+<body>
+    <header>
+        <div class="logo">QuickHire</div>
+        <nav>
+            <ul>
+                <li><a href="#">Update Profile</a></li>
+                <li><a href="#">Upload Resume</a></li>
+                <li><a href="#">Applied Jobs</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Welcome back, <?php echo $_SESSION['name']; ?>!</h1>
+            <p>Your next opportunity is just a few clicks away.</p>
+        </section>
+
+    
+        <section class="search-jobs">
+         <h2>Find Your Next Opportunity</h2>
+         <form action="search_jobs.php" method="GET">
+            <input class = "Job-role" type="text" name="role" placeholder="Job Role (e.g., Web Developer)">
+            <input class = "location" type="text" name="location" id="location-input" placeholder="Location (e.g., Delhi)">
+           <button type="submit">Search</button>
+         </form>
+        </section>
+    </main>
+    
+    
+    <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Hv3qXV2pNMfLNCHqPsqYJeiYpR0wz8w&libraries=places"
+  async defer>
+</script>
+    
+    
+    <script>
+  function initAutocomplete() {
+    const input = document.getElementById('location-input');
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ['(cities)'],
+      componentRestrictions: { country: "in" } // Limit to India
+    });
+
+    autocomplete.addListener('place_changed', function () {
+      const place = autocomplete.getPlace();
+      input.value = place.formatted_address || input.value;
+    });
+  }
+
+  window.initAutocomplete = initAutocomplete;
+
+  window.addEventListener("load", function () {
+    if (typeof google !== "undefined" && google.maps && google.maps.places) {
+      initAutocomplete();
+    } else {
+      console.error("Google Maps API failed to load.");
+    }
+  });
+</script>
+
+</body>
+</html>
