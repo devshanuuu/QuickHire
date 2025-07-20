@@ -54,7 +54,7 @@ $user_email = $_SESSION['email'];
     
     
     <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Hv3qXV2pNMfLNCHqPsqYJeiYpR0wz8w&libraries=places"
+  src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"
   async defer>
 </script>
     
