@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_type'] = $user_type;
 
             if ($user_type == 'professional') {
-                header("Location: jobs_list.php");
+                header("Location: professional_dashboard.php");
             } else {
                 header("Location: add_job.php");
             }
