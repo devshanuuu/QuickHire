@@ -27,7 +27,7 @@ $user_email = $_SESSION['email'];
         <div class="logo">QuickHire</div>
         <nav>
             <ul>
-                <li><a href="#">Update Profile</a></li>
+                <li><a href="update_profile.php">Update Profile</a></li>
                 <li><a href="#">Upload Resume</a></li>
                 <li><a href="#">Applied Jobs</a></li>
                 <li><a href="logout.php">Logout</a></li>
