@@ -56,7 +56,7 @@ header {
 }
 
 .logo:hover {
-    transform: scale(1.05);
+    transform: scaleY(1.1);
     text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
 }
 
