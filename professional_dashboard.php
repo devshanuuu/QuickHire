@@ -53,18 +53,14 @@ $user_email = $_SESSION['email'];
     </main>
     
     
-    <script
-  src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"
-  async defer>
-</script>
-    
-    
-    <script>
+    <?php include('config.php'); ?>
+
+<script>
   function initAutocomplete() {
     const input = document.getElementById('location-input');
     const autocomplete = new google.maps.places.Autocomplete(input, {
       types: ['(cities)'],
-      componentRestrictions: { country: "in" } // Limit to India
+      componentRestrictions: { country: "in" }
     });
 
     autocomplete.addListener('place_changed', function () {
@@ -73,16 +69,15 @@ $user_email = $_SESSION['email'];
     });
   }
 
+  // Ensure it's globally accessible
   window.initAutocomplete = initAutocomplete;
-
-  window.addEventListener("load", function () {
-    if (typeof google !== "undefined" && google.maps && google.maps.places) {
-      initAutocomplete();
-    } else {
-      console.error("Google Maps API failed to load.");
-    }
-  });
 </script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=<?php echo $GOOGLE_MAPS_API_KEY; ?>&libraries=places&callback=initAutocomplete"
+  async defer>
+</script>
+
 
 </body>
 </html>
