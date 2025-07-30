@@ -14,7 +14,10 @@ $is_update = false;
 
 // Check if a profile already exists
 
-$stmt = $conn->prepare("SELECT * FROM profile WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT * FROM profiles WHERE user_id = ?");
+if (!$stmt) {
+    die("Prepare failed: " . $conn->error);
+}
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -38,10 +41,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle Resume upload
     if(isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) { // UPLOAD_ERR_OK is a PHP constant with value 0 meaning success.
         $file_tmp = $_FILES['resume']['tmp_name']; // Temporary file path on the server 
-        $file_name = time() . '_' . basename($FILES['resume']['name']);
+        $file_name = $_FILES['resume']['name']; 
+        move_uploaded_file($file_tmp, "uploads/$file_name"); // Move file to 'uploads' directory
+        $resume = $file_name; // Save the filename(to be stored in DB)
     }
 
+    
+    if ($is_update) {
+        // Update profile
+        if ($resume) {
+            $stmt = $conn->prepare("UPDATE profiles SET full_name=?, age=?, qualification=?, skills=?, resume=? WHERE user_id=?");
+            $stmt->bind_param("sisssi", $full_name, $age, $qualification, $skills, $resume, $user_id);
+        } else {
+            $stmt = $conn->prepare("UPDATE profile SET full_name=?, age=?, qualification=?, skills=? WHERE user_id=?");
+            $stmt->bind_param("sissi", $full_name, $age, $qualification, $skills, $user_id);
+        }
+    } else {
+        // Create profile
+        $stmt = $conn->prepare("INSERT INTO profiles (user_id, full_name, age, qualification, skills, resume, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param("isisss", $user_id, $full_name, $age, $qualification, $skills, $resume);
+    }
+
+    $stmt->execute();
+    header("Location: update_profile.php?success=1");
+    exit;
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -49,17 +75,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Update Profile - QuickHire</title>
-    <link rel="stylesheet" href="profile.css"> <!-- Create this for styling -->
+    <link rel="stylesheet" href="update_profile.css"> <!-- Create this for styling -->
 </head>
 <body>
     <header>
         <div class="logo">QuickHire</div>
         <nav>
             <ul>
-                <li><a href="update_profile.php">Update Profile</a></li>
-                <li><a href="#">Upload Resume</a></li>
-                <li><a href="#">Applied Jobs</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="professional_dashboard.php">Home</a></li>
             </ul>
         </nav>
     </header>
