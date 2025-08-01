@@ -45,7 +45,7 @@ $jobs = $result->fetch_all(MYSQLI_ASSOC);
     </header>
 
     <section class="search-summary">
-        <p>Showing results for:
+        <p>Showing results for-
             <strong>Role:</strong> <?= htmlspecialchars($role) ?: 'Any' ?> |
             <strong>Location:</strong> <?= htmlspecialchars($location) ?: 'Any' ?>
         </p>
