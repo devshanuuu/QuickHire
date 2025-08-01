@@ -60,10 +60,10 @@ header .container-nav {
 }
 
 .logo:hover {
-    transform: scaleY(1.1);
-    text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+    text-shadow: 0 0 25px rgba(255, 165, 0, 0.6), 0 0 50px rgba(255, 165, 0, 0.2);
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
 }
-
 
 /* Main Container */
 .container {
@@ -171,6 +171,7 @@ nav ul {
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-end;
+    padding-right: 20px;
 }
 
 nav ul li a {
