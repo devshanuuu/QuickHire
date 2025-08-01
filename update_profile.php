@@ -15,9 +15,6 @@ $is_update = false;
 // Check if a profile already exists
 
 $stmt = $conn->prepare("SELECT * FROM profiles WHERE user_id = ?");
-if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-}
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -79,7 +76,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <header>
-        <div class="logo">QuickHire</div>
+        <div class="logo">
+            <a href="professional_dashboard.php" style="text-decoration: none;">QuickHire</a>
+        </div>
         <nav>
             <ul>
                 <li><a href="professional_dashboard.php">Home</a></li>
@@ -88,6 +87,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
 
     <div class="container">
+        <?php if (isset($_GET['success'])): ?>
+         <p class="success-message">
+          <?= $is_update ? "Profile updated successfully!" : "Profile created successfully!" ?>
+         </p>
+        <?php endif; ?>
         <h2><?= $is_update ? 'Update Your Profile' : 'Create Your Profile' ?></h2>
 
         <form action="update_profile.php" method="POST" enctype="multipart/form-data">
