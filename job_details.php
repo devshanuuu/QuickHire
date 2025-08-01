@@ -45,7 +45,39 @@ endif;
     <span class="label">Description:</span><br>
     <?= nl2br(htmlspecialchars($job['job_description'])) ?>
   </div>
+  <div class="job-details">
+    <button id="applyBtn" data-job-id="<?= $job_id ?>">Apply Now</button> <!-- data-job-id :- HTML5 Data attribute syntax -->
+  </div>
 </div>
 
 </body>
 </html>
+
+<script>
+document.getElementById('applyBtn').addEventListener('click', function () {
+    const jobId = this.dataset.jobId; // Grabs the job ID stored in a custom HTML attribute
+
+    fetch('apply_job.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ job_id: jobId }) // Converts JS object into string
+    })
+    
+    .then(response => response.json()) // Wait for server to respond and converts that response to JSON
+    
+    .then(data => {
+        if (data.success) {
+            alert("✅ Job applied successfully!");
+        } else {
+            alert("❌ Failed to apply: " + data.message);
+        }
+    })
+    
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Something went wrong.");
+    });
+});
+</script>
