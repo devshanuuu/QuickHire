@@ -50,14 +50,19 @@ header .container-nav {
     align-items: center;
 }
 
-.logo {
+.logo a {
     font-size: 1.8rem;
     font-weight: bold;
     color: #ff9500;
     text-transform: uppercase;
     letter-spacing: 2px;
+    padding-left: 15px;
 }
 
+.logo:hover {
+    transform: scaleY(1.1);
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
 
 
 /* Main Container */
