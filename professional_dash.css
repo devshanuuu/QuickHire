@@ -45,7 +45,7 @@ header {
     gap: 1rem;
 }
 
-.logo {
+.logo a {
     font-size: clamp(1.25rem, 4vw, 1.75rem);
     font-weight: 700;
     color: orange;

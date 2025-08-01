@@ -24,7 +24,9 @@ $user_email = $_SESSION['email'];
 </head>
 <body>
     <header>
-        <div class="logo">QuickHire</div>
+        <div class="logo">
+           <a href="professional_dashboard.php" style="text-decoration: none;">QuickHire</a>
+        </div>
         <nav>
             <ul>
                 <li><a href="update_profile.php">Update Profile</a></li>
