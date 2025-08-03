@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Step 1: Check if email already exists
     $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    if (!$check_stmt) {
+    die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+}
     $check_stmt->bind_param("s", $email);
     $check_stmt->execute();
     $check_stmt->store_result();
