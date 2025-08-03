@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($user_type == 'professional') {
                 header("Location: professional_dashboard.php");
             } else {
-                header("Location: add_job.php");
+                header("Location: company_dashboard.php");
             }
             exit();
         } else {
