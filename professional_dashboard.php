@@ -4,7 +4,7 @@ session_start();
 
 require_once 'db.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'professional') {
     header("Location: login.php");
     exit();
 }
@@ -38,7 +38,7 @@ $user_email = $_SESSION['email'];
 
     <main>
         <section class="welcome">
-            <h1>Welcome back, <?php echo $_SESSION['name']; ?>!</h1>
+            <h1>Welcome, <?php echo $_SESSION['name']; ?>!</h1>
             <p>Your next opportunity is just a few clicks away.</p>
         </section>
 
