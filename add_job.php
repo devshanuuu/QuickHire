@@ -29,7 +29,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="professional_dashboard.php">Home</a></li>
+                <li><a href="company_dashboard.php">Home</a></li>
             </ul>
         </nav>
     </header>
@@ -67,7 +67,7 @@
 
   <!-- Load Google Places API -->
    <?php include('config.php'); ?>
-   
+
   <script>
   function initAutocomplete() {
     const input = document.getElementById('location-input');
