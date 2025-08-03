@@ -12,8 +12,11 @@ $company_id = $_SESSION['user_id'];
 $company_name = $_SESSION['name'];
 
 // Fetch jobs posted by this company
-$stmt = $conn->prepare("SELECT id, job_title, location, created_at FROM jobs WHERE posted_by = ? ORDER BY created_at DESC");
-$stmt->bind_param("i", $company_id);
+$stmt = $conn->prepare("SELECT id, job_title, location, created_at FROM jobs WHERE company = ? ORDER BY created_at DESC");
+if(!$stmt) {
+    die("Prepare Failed: (" . $conn->errno . ") " . $conn->error);
+}
+$stmt->bind_param("s", $company_name);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -22,7 +25,7 @@ $result = $stmt->get_result();
 <html>
 <head>
     <title>Company Dashboard - QuickHire</title>
-    <link rel="stylesheet" href="dashboardstyle.css"> 
+    <link rel="stylesheet" href="company_dash.css"> 
 </head>
 
 <body>
@@ -41,8 +44,7 @@ $result = $stmt->get_result();
         <h1>Welcome, <?php echo htmlspecialchars($company_name); ?>!</h1>
         <p>Here's a quick overview of your job postings.</p>
 
-        <a href="post-job.php" class="btn-post-job">+ Post a New Job</a>
-
+        
         <table class="job-table">
             <thead>
                 <tr>
@@ -71,5 +73,6 @@ $result = $stmt->get_result();
                 <?php endif; ?>
             </tbody>
         </table>
+        <a href="add_job.php" class="btn-post-job">+ Post a New Job</a>
+
     </div>
-    
