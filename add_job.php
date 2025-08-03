@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Add New Job</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="addjob_style.css">
   <style>
     /* Optional styling */
     .pac-container {
@@ -22,7 +22,19 @@
     }
   </style>
 </head>
-<body class="add-job-page">
+<body>
+   <header>
+        <div class="logo">
+            <a href="professional_dashboard.php" style="text-decoration: none;">QuickHire</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="professional_dashboard.php">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <div class="add-job-page">
 
   <h2>Add a New Job</h2>
 
@@ -54,39 +66,33 @@
   </form>
 
   <!-- Load Google Places API -->
-  <script
-    src="https://&libraries=places"
-    async defer> //Males sure the script loads after the page is ready.
-  </script>
-
+   <?php include('config.php'); ?>
+   
   <script>
-    function initAutocomplete() {
-      const input = document.getElementById('location-input');
-      const autocomplete = new google.maps.places.Autocomplete(input, {
-        types: ['(cities)'], // only show cities results
-        componentRestrictions: { country: "in" } // Limit to india
-      });
-
-      autocomplete.addListener('place_changed', function () {
-        const place = autocomplete.getPlace();
-        console.log("Selected place:", place.formatted_address);
-        input.value = place.formatted_address || input.value;
-      });
-    }
-
-    // Wait for Google script to load
-    window.initAutocomplete = initAutocomplete;
-
-    // Run initAutocomplete after script loads
-    window.addEventListener("load", function () {
-      if (typeof google !== "undefined" && google.maps && google.maps.places) {
-        initAutocomplete();
-      } else {
-        console.error("Google Maps API failed to load.");
-      }
+  function initAutocomplete() {
+    const input = document.getElementById('location-input');
+    const autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ['(cities)'],
+      componentRestrictions: { country: "in" }
     });
-  </script>
+
+    autocomplete.addListener('place_changed', function () {
+      const place = autocomplete.getPlace();
+      input.value = place.formatted_address || input.value;
+    });
+  }
+
+  // Ensure it's globally accessible
+  window.initAutocomplete = initAutocomplete;
+</script>
+
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=<?php echo $GOOGLE_MAPS_API_KEY; ?>&libraries=places&callback=initAutocomplete"
+  async defer>
+</script>
+  </div>
 
 </body>
 </html>
+
  
