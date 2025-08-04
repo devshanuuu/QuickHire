@@ -56,13 +56,14 @@ $result = $stmt->get_result();
             </thead>
             <tbody>
                 <?php if ($result->num_rows > 0): ?>
-                    <?php while($row = $result->fetch_assoc()): ?>
+                    <?php while($row = $result->fetch_assoc()): ?> <!-- Returns the row as an associative array(key value pair) -->
                         <tr>
                             <td><?php echo htmlspecialchars($row['job_title']); ?></td>
                             <td><?php echo htmlspecialchars($row['location']); ?></td>
                             <td><?php echo date("d M Y", strtotime($row['created_at'])); ?></td>
                             <td>
-                                <a href="edit-job.php?id=<?php echo $row['id']; ?>">Edit</a>
+                             <a href="job-details.php?id=<?php echo $row['id']; ?>">View Details</a>
+                             <a href="delete-job.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
