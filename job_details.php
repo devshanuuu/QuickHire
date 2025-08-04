@@ -23,7 +23,7 @@ endif;
 <html>
 <head>
     <title><?= htmlspecialchars($job['job_title']) ?></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="jobdetails_style.css">
 </head>
 <body class="job-details-page">
 
@@ -56,6 +56,8 @@ endif;
 <script>
 document.getElementById('applyBtn').addEventListener('click', function () {
     const jobId = this.dataset.jobId; // Grabs the job ID stored in a custom HTML attribute
+    
+    
 
     fetch('apply_job.php', {
         method: 'POST',
