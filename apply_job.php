@@ -15,6 +15,8 @@ $user_id = $_SESSION['user_id'];
 // Get raw JSON data
 $data = json_decode(file_get_contents("php://input"), true);
 
+//file_put_contents("debug.txt", print_r($data, true)); // Will create a file for debugging
+
 if (!isset($data['job_id'])) {
     echo json_encode(["success" => false, "message" => "Missing job ID"]);
     exit;
