@@ -1,3 +1,8 @@
+<?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+    <p style="color: green;">Job deleted successfully.</p>
+<?php endif; ?>
+
+
 <?php
 session_start();
 require_once 'db.php';
@@ -7,6 +12,8 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'company') {
     header("location: login.php");
     exit();
 }
+
+
 
 $company_id = $_SESSION['user_id'];
 $company_name = $_SESSION['name'];
@@ -63,7 +70,7 @@ $result = $stmt->get_result();
                             <td><?php echo date("d M Y", strtotime($row['created_at'])); ?></td>
                             <td>
                              <a href="job-details.php?id=<?php echo $row['id']; ?>">View Details</a>
-                             <a href="delete-job.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</a>
+                             <a href="delete_job.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
